@@ -1,0 +1,17 @@
+USE  empresa
+CREATE PROCEDURE RelatorioVendasDiario()
+BEGIN
+    SELECT 
+        data_venda,
+        produto_id,
+        SUM(quantidade) AS total_vendido
+    FROM
+        vendas
+    WHERE
+        data_venda = CURDATE()
+    GROUP BY
+        data_venda, produto_id;
+END;
+
+CALL RelatorioVendasDiario();
+
