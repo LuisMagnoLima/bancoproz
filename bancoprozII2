@@ -1,0 +1,12 @@
+Use clientes;
+CREATE FUNCTION TotalClientesDia(data DATE)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE total INT;
+    SELECT COUNT(*) INTO total
+    FROM clientes
+    WHERE DATE(data_cadastro) = data;
+    RETURN total;
+END;
+
